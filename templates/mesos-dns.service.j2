@@ -1,0 +1,16 @@
+# {{ansible_managed}}                                                                                               
+
+[Unit]
+Description=mesos-dns service
+After=network.target
+Wants=network.target
+
+[Service]
+ExecStart=/usr/local/bin/mesos-dns --config {{mesos_dns_config_file}}
+Restart=always
+RestartSec=20
+TimeoutSec=300
+User={{ mesos_dns_owner }}
+
+[Install]
+WantedBy=multi-user.target
