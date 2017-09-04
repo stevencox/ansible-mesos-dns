@@ -1,6 +1,7 @@
 
 {
     "zk" : "zk://{{ groups['masters'] |join(':2181,') }}:2181/mesos",
+    "zk" : "{{ mesos_zookeeper_masters }}",
     "masters": [ {{ groups['masters'] | map('regex_replace', '^(.*)$', '"\\1:5050"') | list | join(", ") }} ],
     "refreshSeconds": 60,
     "ttl": 60,
